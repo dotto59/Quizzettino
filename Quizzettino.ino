@@ -1,10 +1,10 @@
 /*
 Name:		 QUIZZETTINO
-Created: 06/12/2022
+Created: 09/12/2022
 Author:	 Alex Palmese
 Contact: alex.palmese@gmail.com
 Copyright (C) 2022 Alex Palmese
-Website:	https://github.com/ ....
+Website:	https://github.com/dotto59/Quizzettino/
 
 Version 1.0.0
 
@@ -17,12 +17,7 @@ This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
 */
-//#define DEBUG 1
 
 // ***************************************************
 // CONFIGURAZIONE
@@ -114,18 +109,10 @@ void setup()
 
   if (EEPROM.read(E_SET) == 255) EEPROM.write(E_SET, 0);
   
-#ifdef DEBUG
-  EDump();
-#endif
   // Leggo configurazione, se presente
   if (EEPROM.read(E_SET) == 1) {
     bAutoReset = (EEPROM.read(E_AUTORESET) == 1);
     bSuoni = (EEPROM.read(E_SUONI) == 1);
-#ifdef DEBUG
-    Serial.println("Lettura da EEPROM:");
-    Serial.print("AutoReset="); Serial.println(bAutoReset);
-    Serial.print("Suoni="); Serial.println(bSuoni);
-#endif
   }
     
   // Melodia all'accensione
