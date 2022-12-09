@@ -4,11 +4,16 @@
 ## Introduzione
 Il "Quizzettone Elettronico", distribuito da Giochi Preziosi, è stato un giocattolo molto diffuso negli anni '90 in quanto univa ai consueti giochi da tavolo un apparecchio che emulava le pulsantiere di molti dei più famosi quiz.
 
-Con questo "retrofit" è possibile non solo far tornare in funzione un vecchio Quizzettone anche non più funzionante (su eBay se ne trovano ancora) e quindi donargli una nuova vita utilizzandolo come originariamente previsto, ma lo trasformiamo in una "pulsantiera intelligente" grazie ad Arduino consentendo di collegarlo ad un Personal Computer e comandarlo tramite un semplice protocollo seriale.
+Con questo "retrofit" possiamo non solo far tornare in funzione un vecchio Quizzettone anche non più funzionante (su eBay se ne trovano ancora a pochi Euro, purché integro e con i pulsanti funzionanti) e quindi donargli una nuova vita utilizzandolo come originariamente previsto, ma lo trasformiamo in una "pulsantiera intelligente" grazie ad Arduino consentendo di collegarlo ad un Personal Computer e comandarlo tramite un semplice protocollo seriale.
 
-E' quindi possibile implementare su PC dei giochi che siano in grado di interagire con la pulsantiera ed i relativi concorrenti, senza
+E' quindi possibile implementare su PC dei giochi che siano in grado di interagire con la pulsantiera ed i relativi concorrenti.
+
+Per ulteriori informazioni sul progetto, vedere il sito Instructables.
 
 ## Operatività
+
+Una volta acceso o collegandolo ad un PC via USB o con un caricabatteria o persino un power bank, dopo una inizializzazione durante la quale si verifica il funzionamento dei sei LED, il Quizzettino sarà in attesa della pressione di un pulsante da parte di un concorrente non appena si accenderà il LED centrale.
+Quando un concorrente preme il proprio pulsante si accenderà il corrispondente LED e verrà emesso un tono. Da quel momento nessun altro concorrente potrà premere il proprio pulsante.
 
 ## Protocollo seriale
 Il protocollo seriale implementato è molto semplice e si compone da singoli caratteri inviati ad Arduino Nano della pulsantiera. 
