@@ -22,7 +22,7 @@ Caratteri inviati dal Quizzettone al PC:
 - '+' Premuto il tasto verde (OK)
 - '-' Premuto il testo rosso (ERRORE)
 - 'E' Dump dei dati di configurazione in EEPROM (vedi "Dump EEPROM")
-- '#' Indica un commento o una stringa di debug, da ignorare
+- '#' Indica un commento o una stringa di debug, da ignorare fino al primo '\n' (ignorare '\r')
 
 Comandi dal PC al Quizzettone:
 - 'R' Reset (come pulsante)
