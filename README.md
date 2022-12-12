@@ -4,7 +4,7 @@
 ## Introduzione
 Il "Quizzettone Elettronico"®, distribuito da Giochi Preziosi, è stato un giocattolo molto diffuso negli anni '90 in quanto univa ai consueti giochi da tavolo un apparecchio che emulava le pulsantiere di molti dei più famosi quiz.
 
-Con questo "retrofit" possiamo non solo far tornare in funzione un vecchio Quizzettone anche non più funzionante (su eBay se ne trovano ancora a pochi Euro, purché integro e con i pulsanti funzionanti) e quindi donargli una nuova vita utilizzandolo come originariamente previsto, ma lo trasformiamo in una "pulsantiera intelligente" grazie ad Arduino consentendo di collegarlo ad un Personal Computer e comandarlo tramite un semplice protocollo seriale.
+Con questo "retrofit" possiamo non solo far tornare in funzione un vecchio Quizzettone anche non più funzionante (su eBay se ne trovano ancora a pochi Euro, purché integro e con i pulsanti funzionanti) e quindi donargli una nuova vita utilizzandolo come originariamente previsto, ma lo trasformiamo anche in una "pulsantiera intelligente" grazie ad Arduino, ossia consentendo di collegarlo ad un Personal Computer e comandarlo tramite un semplice protocollo seriale.
 
 E' quindi possibile implementare su PC dei giochi che siano in grado di interagire con la pulsantiera ed i relativi concorrenti.
 
