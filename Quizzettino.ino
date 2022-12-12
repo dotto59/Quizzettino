@@ -40,20 +40,14 @@ const unsigned long AUTO_RESET = 4000;
 // ***************************************************
 #include "pitches.h"
 // Suono all'accensione
-const byte START_NOTE = 16;
+const byte START_NOTE = 6;
 int StartNote[] = { 
-    NOTE_E6, NOTE_E6, 0, NOTE_E6, 
-    0, NOTE_C6, NOTE_E6, 0,
-    NOTE_G6, 0, 0, 0,
-    NOTE_G5, 0, 0, 0
+    NOTE_E6, NOTE_E6, 0, NOTE_G5, 0, NOTE_G6
 };
 int StartTempo[] = { 
-    12, 12, 12, 12, 
-    12, 12, 12, 12,
-    12, 12, 12, 12,
-    12, 12, 12, 12
+    12, 12, 12, 12, 12, 12
 };
-// Sono pulsante
+// Suono del pulsante concorrente
 const byte PULS_NOTES = 2;
 int PulsNote[] = {
   NOTE_D5, NOTE_E5
@@ -62,9 +56,21 @@ int PulsTempo[] = {
   12, 6
 };
 // Suono (Hz) e durata (ms) dei tasti SI e NO
-const unsigned int SI_NOTE = 740;
-const unsigned int NO_NOTE = 120;
-const unsigned long BEEP_DURATION = 1000;
+const byte SI_NOTE = 4;
+int SINote[] = { 
+    NOTE_E5, NOTE_G5, NOTE_C6, NOTE_E6
+};
+int SITempo[] = { 
+    12, 12, 12, 6
+};
+const byte NO_NOTE = 1;
+int NONote[] = { 
+    NOTE_A2
+};
+int NOTempo[] = { 
+    1
+};
+
 // ***************************************************
 // Gestione configurazione in EEPROM
 // ***************************************************
@@ -232,14 +238,12 @@ void loop()
   }
   if (digitalRead(P_SI) == LOW || bSI) {
     Serial.println("+");
-    if (bSuoni) tone(P_SPEAKER, SI_NOTE, BEEP_DURATION);
-    delay(BEEP_DURATION);
+    play(SINote, SI_NOTE, SITempo);
     bSI = false;
   }
   if (digitalRead(P_NO) == LOW || bNO) {
     Serial.println("-");
-    if (bSuoni) tone(P_SPEAKER, NO_NOTE, BEEP_DURATION);
-    delay(BEEP_DURATION);
+    play(NONote, NO_NOTE, NOTempo);
     bNO = false;
   }
 }
