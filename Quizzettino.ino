@@ -55,20 +55,28 @@ int PulsNote[] = {
 int PulsTempo[] = {
   12, 6
 };
-// Suono (Hz) e durata (ms) dei tasti SI e NO
-const byte SI_NOTE = 4;
+// Suono del pulsante reset
+const byte RESET_NOTES = 1;
+int ResetNote[] = {
+  NOTE_C4
+};
+int ResetTempo[] = {
+  12
+};
+// Suono dei tasti SI e NO
+const byte SI_NOTE = 5;
 int SINote[] = { 
-    NOTE_E5, NOTE_G5, NOTE_C6, NOTE_E6
+    NOTE_E5, NOTE_G5, NOTE_C6, NOTE_E6, 0
 };
 int SITempo[] = { 
-    12, 12, 12, 6
+    12, 12, 12, 6, 12
 };
-const byte NO_NOTE = 1;
+const byte NO_NOTE = 2;
 int NONote[] = { 
-    NOTE_A2
+    NOTE_A2, 0
 };
 int NOTempo[] = { 
-    1
+    2, 12
 };
 
 // ***************************************************
@@ -129,16 +137,18 @@ void setup()
 }
 
 void WriteConfig() {
+  // Flag configurazione salvata
   if (EEPROM.read(E_SET) == 0 || EEPROM.read(E_SET) == 255) EEPROM.write(E_SET, 1);
-  EEPROM.write(E_AUTORESET, bAutoReset ? 1: 0);
-  EEPROM.write(E_SUONI, bSuoni ? 1: 0);
+  // Scrive il valore solamente se cambiato
+  if (EEPROM.read(E_AUTORESET) != bAutoReset) EEPROM.write(E_AUTORESET, bAutoReset ? 1: 0);
+  if (EEPROM.read(E_SUONI) != bSuoni) EEPROM.write(E_SUONI, bSuoni ? 1: 0);
 }
 
 void EDump() {
   Serial.print("E");
   for (int a=0; a <= E_MAX; ++a) {
-    //Serial.print(a); Serial.print("="); 
-    Serial.print(EEPROM.read(a), HEX); Serial.print(";");
+    Serial.print(EEPROM.read(a), HEX); 
+    Serial.print(";");
   }
   Serial.println();
 }
@@ -188,6 +198,7 @@ void loop()
           bSuoni = false;
           WriteConfig();
           break;
+          
         case '?': // Dump EEPROM
           EDump();
       }
@@ -204,7 +215,22 @@ void loop()
   if (bAutoReset && tmrAutoReset > 0 && millis()-tmrAutoReset >= AUTO_RESET) {
     bClear = true;
   }
-  
+
+  if (digitalRead(P_SI) == LOW || bSI) {
+    Serial.println("+");
+    play(SINote, SI_NOTE, SITempo);
+    bSI = false;
+    // Il pulsante disattiva anche il LED del concorrente, se acceso
+    bClear = true;
+  }
+  if (digitalRead(P_NO) == LOW || bNO) {
+    Serial.println("-");
+    play(NONote, NO_NOTE, NOTempo);
+    bNO = false;
+    // Il pulsante disattiva anche il LED del concorrente, se acceso
+    bClear = true;
+  }
+
   // Devo quindi resettare?
   if (bClear) {
     // Spegne tutti i led
@@ -213,10 +239,9 @@ void loop()
 	  idAcceso = 0;
     bClear = false;
     bPremuto = false;
-    // Conferma sonora
-    if (bSuoni) tone(P_SPEAKER, NOTE_A5, 200);
     digitalWrite(P_READY, HIGH);
     Serial.println("R");
+    play(ResetNote, RESET_NOTES, ResetTempo);
     tmrAutoReset = 0;
   }
   
@@ -235,16 +260,6 @@ void loop()
         break;
       }
     }
-  }
-  if (digitalRead(P_SI) == LOW || bSI) {
-    Serial.println("+");
-    play(SINote, SI_NOTE, SITempo);
-    bSI = false;
-  }
-  if (digitalRead(P_NO) == LOW || bNO) {
-    Serial.println("-");
-    play(NONote, NO_NOTE, NOTempo);
-    bNO = false;
   }
 }
 
