@@ -12,9 +12,9 @@ Per ulteriori informazioni sul progetto, vedere il sito Instructables.
 
 ## Operatività
 
-Una volta acceso o collegandolo ad un PC via USB o con un caricabatteria o persino un power bank, dopo una inizializzazione durante la quale si verifica il funzionamento dei sei LED, il Quizzettino sarà in attesa della pressione di un pulsante da parte di un concorrente non appena si accenderà il LED centrale.
+Una volta acceso (collegandolo ad un PC via USB, o con un caricabatteria, o persino un power bank), dopo una breve inizializzazione durante la quale si accendono in seuquenz ai sei LED per verificarne il funzionamento, il Quizzettino sarà in attesa della pressione di un pulsante da parte di un concorrente non appena si accenderà il LED centrale verde.
 
-Quando il concorrente più rapido premerà il proprio pulsante per prenotarsi si accenderà il corrispondente LED, verrà emesso un tono, il LED centrale si spegnerà, e nessun altro potrà prenotarsi. Quando il presentatore deve passare alla domanda successiva, premerà il pulsante di reset con il quale il Quizzettone si metterà nuovamente in attesa di un pulsante, ed il LED centrale si accenderà nuovamente.
+Quando il concorrente più rapido premerà il proprio pulsante per prenotarsi si accenderà il corrispondente LED, verrà emesso un tono, il LED centrale si spegnerà, e nessun altro potrà prenotarsi, fino a quando il "presentatore" per  passare alla domanda o gioco successivo premerà il pulsante di reset: si spegnerà la luce del concorrente ed il LED centrale si accenderà nuovamente ad indicare che il Quizzettone è nuovamente in attesa di un pulsante.
 
 ## Protocollo seriale
 Il protocollo seriale implementato è molto semplice e si compone da singoli caratteri inviati ad Arduino Nano della pulsantiera. 
